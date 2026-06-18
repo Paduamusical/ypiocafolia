@@ -29,31 +29,34 @@
       --max:1240px;
     }
 
-    /* Container da galeria */
-.gallery-grid {
-    display: flex;
-    flex-direction: column; /* Coloca as fotos uma abaixo da outra */
-    gap: 150px;              /* Espaço entre as fotos */
-    max-width: 1000px;       /* Define a largura máxima da galeria */
-    margin: 0 auto;         /* Centraliza a galeria na página */
+ .gallery-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-/* Tamanho fixo para todos os blocos de fotos */
 .photo-slot {
-    width: 600%;            /* Ocupa a largura total do container */
-    height: 500px;          /* Altura fixa igual para todas */
-    overflow: hidden;
-    position: relative;
-    border-radius: 15px;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 20px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  background: #111;
 }
 
-/* Garantir que a imagem preencha todo o slot sem deformar */
 .photo-slot img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;      /* Corta a imagem mantendo a proporção */
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
+
+
+
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -1410,46 +1413,37 @@
           </p>
         </div>
 
-       <section class="section" id="galeria">
-    <div class="container">
-        <!-- Remova classes de grade (grid) complexas e mantenha simples -->
-        <div class="gallery-grid">
-            
-            <article class="photo-slot">
-                <img src="imagem/y22.jpeg" alt="Descrição 1">
-            </article>
-
-            <article class="photo-slot">
-                <img src="imagem/y22.jpeg" alt="Descrição 2">
-            </article>
-
-            <article class="photo-slot">
-                <img src="imagem/y22.jpeg" alt="Descrição 3">
-            </article>
-
-        </div>
+      <section class="section" id="galeria">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Galeria de Fotos</h2>
+      <p>
+        Espaço para adicionar suas fotos do Ypioca Folia. Todas ficam no mesmo tamanho e organizadas em coluna.
+      </p>
     </div>
+
+    <div class="gallery-list">
+      <article class="photo-slot reveal">
+        <img src="imagens/foto1.jpg" alt="Foto 1 do Ypioca Folia">
+      </article>
+
+      <article class="photo-slot reveal">
+        <img src="imagens/foto2.jpg" alt="Foto 2 do Ypioca Folia">
+      </article>
+
+      <article class="photo-slot reveal">
+        <img src="imagens/foto3.jpg" alt="Foto 3 do Ypioca Folia">
+      </article>
+
+      <article class="photo-slot reveal">
+        <img src="imagens/foto4.jpg" alt="Foto 4 do Ypioca Folia">
+      </article>
+    </div>
+  </div>
 </section>
 
-          <section class="section" id="galeria">
-    <div class="container">
-        <!-- Remova classes de grade (grid) complexas e mantenha simples -->
-        <div class="gallery-grid">
-            
-            <article class="photo-slot">
-                <img src="imagem/y22.jpeg" alt="Descrição 1">
-            </article>
 
-            <article class="photo-slot">
-                <img src="imagem/y22.jpeg" alt="Descrição 2">
-            </article>
-
-            <article class="photo-slot">
-                <img src="imagem/y22.jpeg" alt="Descrição 3">
-            </article>
-
-        </div>
-    </div>
+          
 </section>
 
                    
