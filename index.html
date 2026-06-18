@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ypioca Folia — Portfólio Oficial</title>
+  <meta name="description" content="Portfólio oficial do Ypioca Folia. História, atrações, impacto cultural, galeria e cadastro para aquisição de abadás." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee:wght@400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070707;
+      --surface:#111114;
+      --surface-2:#17181d;
+      --text:#f5f2ea;
+      --muted:#cfc7b7;
+      --yellow:#ffcb05;
+      --red:#ef3340;
+      --green:#08b45a;
+      --blue:#15a7ff;
+      --pink:#ff4fb8;
+      --orange:#ff8a00;
+      --line:rgba(255,255,255,.12);
+      --glass:rgba(255,255,255,.07);
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:24px;
+      --radius-lg:34px;
+      --max:1240px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,203,5,.18), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(21,167,255,.16), transparent 24%),
+        radial-gradient(circle at 78% 72%, rgba(255,79,184,.12), transparent 20%),
+        radial-gradient(circle at 20% 88%, rgba(8,180,90,.12), transparent 24%),
+        linear-gradient(180deg, #050506 0%, #0a0a0f 45%, #111114 100%);
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.18;
+      background:
+        linear-gradient(90deg, transparent 0 96%, rgba(255,255,255,.04) 96% 100%),
+        linear-gradient(transparent 0 96%, rgba(255,255,255,.04) 96% 100%);
+      background-size:28px 28px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.45), transparent 85%);
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button,input{font:inherit}
+
+    .container{
+      width:min(calc(100% - 2rem), var(--max));
+      margin-inline:auto;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .reveal.is-visible{
+      opacity:1;
+      transform:none;
+    }
+
+    .stagger > *{
+      opacity:0;
+      transform:translateY(22px);
+      animation:rise .8s ease forwards;
+    }
+    .stagger > *:nth-child(1){animation-delay:.08s}
+    .stagger > *:nth-child(2){animation-delay:.16s}
+    .stagger > *:nth-child(3){animation-delay:.24s}
+    .stagger > *:nth-child(4){animation-delay:.32s}
+    .stagger > *:nth-child(5){animation-delay:.4s}
+    .stagger > *:nth-child(6){animation-delay:.48s}
+
+    @keyframes rise{
+      to{opacity:1;transform:none}
+    }
+
+    .skip-link{
+      position:absolute;
+      left:-999px;
+      top:auto;
+    }
+    .skip-link:focus{
+      left:1rem;top:1rem;
+      z-index:9999;
+      background:#fff;
+      color:#000;
+      padding:.75rem 1rem;
+      border-radius:10px;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(16px);
+      background:rgba(7,7,7,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.9rem;
+      min-width:0;
+    }
+
+    .logo-mark{
+      width:46px;height:46px;
+      border-radius:14px;
+      position:relative;
+      background:
+        conic-gradient(from 210deg, var(--yellow), var(--red), var(--pink), var(--blue), var(--green), var(--yellow));
+      box-shadow:
+        inset 0 0 0 2px rgba(255,255,255,.12),
+        0 10px 30px rgba(255,203,5,.22);
+      overflow:hidden;
+    }
+
+    .logo-mark::before,
+    .logo-mark::after{
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      background:rgba(7,7,7,.88);
+    }
+    .logo-mark::before{
+      width:28px;height:10px;
+      left:9px;top:12px;
+      transform:rotate(-18deg);
+    }
+    .logo-mark::after{
+      width:20px;height:8px;
+      left:13px;bottom:12px;
+      transform:rotate(22deg);
+    }
+
+    .brand-text{
+      min-width:0;
+    }
+    .brand-text strong{
+      display:block;
+      font-family:"Bungee", cursive;
+      font-size:clamp(.95rem, 1vw, 1.1rem);
+      letter-spacing:.04em;
+      color:var(--yellow);
+      line-height:1;
+    }
+    .brand-text span{
+      display:block;
+      color:var(--muted);
+      font-size:.8rem;
+      margin-top:.2rem;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .menu a{
+      color:#f2ead7;
+      font-size:.95rem;
+      position:relative;
+      padding:.4rem 0;
+    }
+
+    .menu a::after{
+      content:"";
+      position:absolute;
+      left:0;bottom:-2px;
+      width:0;height:2px;
+      background:linear-gradient(90deg,var(--yellow),var(--pink));
+      transition:width .25s ease;
+    }
+    .menu a:hover::after,
+    .menu a:focus-visible::after{width:100%}
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      border-radius:999px;
+      padding:.95rem 1.25rem;
+      font-weight:800;
+      transition:transform .2s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn:active{transform:translateY(0) scale(.98)}
+    .btn-primary{
+      color:#0a0a0a;
+      background:linear-gradient(90deg,var(--yellow),#ffd95f);
+      box-shadow:0 12px 30px rgba(255,203,5,.24);
+    }
+    .btn-primary:hover{
+      box-shadow:0 16px 36px rgba(255,203,5,.33);
+    }
+    .btn-dark{
+      color:var(--text);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.11);
+      backdrop-filter:blur(12px);
+    }
+
+    .hero{
+      padding:clamp(2rem, 4vw, 3rem) 0 2rem;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:1.4rem;
+      align-items:stretch;
+    }
+
+    .hero-copy{
+      position:relative;
+      border-radius:var(--radius-lg);
+      padding:clamp(1.5rem, 3vw, 3rem);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+        linear-gradient(135deg, rgba(255,203,5,.12), rgba(239,51,64,.08) 30%, rgba(21,167,255,.08) 60%, rgba(8,180,90,.08));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      isolation:isolate;
+    }
+
+    .hero-copy::before{
+      content:"";
+      position:absolute;
+      inset:auto -15% -20% auto;
+      width:280px;height:280px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,79,184,.36), transparent 68%);
+      filter:blur(10px);
+      z-index:-1;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:.55rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--yellow);
+      font-size:.78rem;
+      margin-bottom:1rem;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:12px;height:12px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--yellow),var(--red));
+      box-shadow:0 0 0 6px rgba(255,203,5,.08);
+    }
+
+    h1,h2,h3{
+      margin:0;
+      font-family:"Bungee", cursive;
+      line-height:.98;
+      letter-spacing:.01em;
+    }
+
+    h1{
+      font-size:clamp(2.6rem, 7vw, 6rem);
+      color:#fff6d8;
+      text-wrap:balance;
+    }
+
+    .hero-copy p.lead{
+      margin:1.15rem 0 1.4rem;
+      max-width:62ch;
+      color:#f0e7d2;
+      font-size:clamp(1rem, 1.5vw, 1.14rem);
+      line-height:1.7;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:.85rem;
+      flex-wrap:wrap;
+      margin-top:1.2rem;
+    }
+
+    .hero-meta{
+      margin-top:1.6rem;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:.8rem;
+    }
+
+    .meta-item{
+      padding:1rem;
+      border-radius:20px;
+      background:rgba(0,0,0,.24);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(10px);
+    }
+    .meta-item strong{
+      display:block;
+      font-size:1.25rem;
+      color:var(--yellow);
+      margin-bottom:.3rem;
+    }
+    .meta-item span{
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.4;
+    }
+
+    .hero-visual{
+      display:grid;
+      gap:1rem;
+      min-height:100%;
+    }
+
+    .festival-poster{
+      position:relative;
+      min-height:420px;
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle at 20% 25%, rgba(255,203,5,.95), transparent 16%),
+        radial-gradient(circle at 80% 18%, rgba(255,79,184,.95), transparent 14%),
+        radial-gradient(circle at 75% 70%, rgba(8,180,90,.9), transparent 16%),
+        radial-gradient(circle at 20% 80%, rgba(21,167,255,.9), transparent 18%),
+        linear-gradient(135deg, #151515 0%, #0c0f17 48%, #0b0b0d 100%);
+      box-shadow:var(--shadow);
+      isolation:isolate;
+    }
+
+    .festival-poster::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(115deg, transparent 0 38%, rgba(255,255,255,.08) 38% 41%, transparent 41% 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 26px);
+      mix-blend-mode:screen;
+      opacity:.7;
+    }
+
+    .confetti{
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+    }
+
+    .confetti span{
+      position:absolute;
+      width:12px;height:34px;
+      border-radius:999px;
+      opacity:.9;
+      animation:float 8s linear infinite;
+      transform-origin:center;
+    }
+
+    .confetti span:nth-child(1){left:8%; top:10%; background:var(--yellow); transform:rotate(18deg); animation-delay:-1s}
+    .confetti span:nth-child(2){left:18%; top:58%; background:var(--blue); transform:rotate(-24deg); animation-delay:-3s}
+    .confetti span:nth-child(3){left:32%; top:18%; background:var(--pink); transform:rotate(40deg); animation-delay:-2s}
+    .confetti span:nth-child(4){left:46%; top:70%; background:var(--green); transform:rotate(8deg); animation-delay:-4s}
+    .confetti span:nth-child(5){left:62%; top:24%; background:var(--red); transform:rotate(-18deg); animation-delay:-1.5s}
+    .confetti span:nth-child(6){left:75%; top:52%; background:var(--yellow); transform:rotate(30deg); animation-delay:-5s}
+    .confetti span:nth-child(7){left:84%; top:16%; background:var(--blue); transform:rotate(-35deg); animation-delay:-2.5s}
+    .confetti span:nth-child(8){left:90%; top:74%; background:var(--pink); transform:rotate(22deg); animation-delay:-6s}
+
+    @keyframes float{
+      0%,100%{transform:translateY(0) rotate(0)}
+      50%{transform:translateY(-10px) rotate(10deg)}
+    }
+
+    .poster-content{
+      position:absolute;
+      inset:auto 1.2rem 1.2rem 1.2rem;
+      padding:1.2rem;
+      border-radius:24px;
+      background:rgba(7,7,7,.58);
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .poster-title{
+      font-family:"Bungee", cursive;
+      font-size:clamp(2rem, 4vw, 3.2rem);
+      color:var(--yellow);
+      text-shadow:0 4px 18px rgba(0,0,0,.35);
+    }
+
+    .poster-sub{
+      margin-top:.4rem;
+      color:#f7f0dc;
+      line-height:1.6;
+    }
+
+    .section{
+      padding:1.1rem 0 4rem;
+    }
+
+    .section-head{
+      margin-bottom:1.4rem;
+      display:grid;
+      gap:.6rem;
+    }
+
+    .section-head h2{
+      font-size:clamp(1.8rem, 4vw, 3.4rem);
+      color:var(--yellow);
+    }
+
+    .section-head p{
+      margin:0;
+      max-width:72ch;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:1rem;
+    }
+
+    .history-layout{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:1.2rem;
+      align-items:start;
+    }
+
+    .panel{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .history-text{
+      padding:clamp(1.2rem, 2.2vw, 2rem);
+    }
+
+    .history-text p{
+      margin:0;
+      color:#f2ead9;
+      line-height:1.9;
+      font-size:1.04rem;
+    }
+
+    .ribbon-box{
+      padding:1.1rem;
+      display:grid;
+      gap:.85rem;
+    }
+
+    .ribbon{
+      border-radius:18px;
+      padding:1rem;
+      background:
+        linear-gradient(90deg, rgba(255,203,5,.14), rgba(255,79,184,.08));
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .ribbon strong{
+      color:var(--yellow);
+      display:block;
+      margin-bottom:.35rem;
+      font-size:1rem;
+    }
+
+    .ribbon span{
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.95rem;
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:1.2rem;
+    }
+
+    .feature-block{
+      padding:1.35rem;
+      border-radius:var(--radius);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.09);
+      position:relative;
+      overflow:hidden;
+      min-height:100%;
+    }
+
+    .feature-block::before{
+      content:"";
+      position:absolute;
+      top:-40px; right:-40px;
+      width:120px; height:120px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,203,5,.22), transparent 70%);
+    }
+
+    .feature-block h3{
+      font-size:clamp(1.2rem, 2vw, 1.8rem);
+      color:#fff0b1;
+      margin-bottom:.9rem;
+    }
+
+    .bullet-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:.8rem;
+    }
+
+    .bullet-list li{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:.8rem;
+      align-items:flex-start;
+      color:#f4eddc;
+      line-height:1.6;
+    }
+
+    .bullet-list li::before{
+      content:"";
+      width:12px;height:12px;
+      margin-top:.45rem;
+      border-radius:3px;
+      background:linear-gradient(135deg,var(--yellow),var(--orange));
+      box-shadow:0 0 0 5px rgba(255,203,5,.08);
+    }
+
+    .impact-strip{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:1rem;
+    }
+
+    .impact{
+      padding:1.2rem;
+      border-radius:22px;
+      background:#0f1014;
+      border:1px solid rgba(255,255,255,.08);
+      min-height:170px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .impact::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:4px;
+      background:var(--accent, var(--yellow));
+    }
+
+    .impact strong{
+      display:block;
+      font-family:"Bungee", cursive;
+      font-size:1rem;
+      color:var(--accent, var(--yellow));
+      margin-bottom:.75rem;
+      line-height:1.2;
+    }
+
+    .impact p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:.95rem;
+    }
+
+    .timeline{
+      position:relative;
+      display:grid;
+      gap:1rem;
+      padding-left:1rem;
+    }
+
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:8px; top:0; bottom:0;
+      width:2px;
+      background:linear-gradient(180deg,var(--yellow),var(--pink),var(--blue));
+    }
+
+    .time-item{
+      position:relative;
+      padding:1.1rem 1.1rem 1.1rem 1.4rem;
+      margin-left:1rem;
+      border-radius:22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .time-item::before{
+      content:"";
+      position:absolute;
+      left:-1.43rem;
+      top:1.25rem;
+      width:16px;height:16px;
+      border-radius:50%;
+      background:var(--yellow);
+      box-shadow:0 0 0 6px rgba(255,203,5,.12);
+    }
+
+    .time-item .date{
+      color:var(--yellow);
+      font-weight:800;
+      font-size:.88rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:.35rem;
+    }
+
+    .time-item h3{
+      font-size:1.3rem;
+      color:#fff2ba;
+      margin-bottom:.45rem;
+    }
+
+    .time-item p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:1rem;
+    }
+
+    .photo-slot{
+      position:relative;
+      min-height:220px;
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(135deg, rgba(255,203,5,.18), rgba(21,167,255,.12) 35%, rgba(255,79,184,.14) 75%, rgba(8,180,90,.14)),
+        #111218;
+      box-shadow:var(--shadow);
+      isolation:isolate;
+    }
+
+    .photo-slot::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.14), transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,.12), transparent 20%);
+      pointer-events:none;
+    }
+
+    .slot-content{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:1rem;
+      background:linear-gradient(180deg, transparent 35%, rgba(0,0,0,.68) 100%);
+    }
+
+    .slot-badge{
+      position:absolute;
+      left:1rem; top:1rem;
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      background:rgba(7,7,7,.58);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(10px);
+      border-radius:999px;
+      padding:.45rem .7rem;
+      font-weight:700;
+      font-size:.82rem;
+      color:#fff4c6;
+    }
+
+    .slot-badge::before{
+      content:"+";
+      display:grid;
+      place-items:center;
+      width:20px;height:20px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--yellow),var(--pink));
+      color:#0b0b0b;
+      font-weight:900;
+    }
+
+    .slot-content strong{
+      font-size:1.05rem;
+      color:#fff5d1;
+      margin-bottom:.25rem;
+    }
+
+    .slot-content span{
+      color:#ddd3bc;
+      font-size:.92rem;
+    }
+
+    .span-5{grid-column:span 5}
+    .span-4{grid-column:span 4}
+    .span-3{grid-column:span 3}
+    .span-6{grid-column:span 6}
+    .tall{min-height:340px}
+    .big{min-height:420px}
+
+    .identity-wrap{
+      display:grid;
+      grid-template-columns:1fr .95fr;
+      gap:1.2rem;
+    }
+
+    .identity-board{
+      padding:1.4rem;
+    }
+
+    .color-chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.8rem;
+      margin-top:1rem;
+    }
+
+    .chip{
+      display:flex;
+      align-items:center;
+      gap:.7rem;
+      padding:.7rem .9rem;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.04);
+      color:#f4ead0;
+      font-weight:700;
+      font-size:.92rem;
+    }
+
+    .chip i{
+      width:18px;height:18px;border-radius:50%;
+      display:inline-block;
+      box-shadow:inset 0 0 0 2px rgba(255,255,255,.22);
+    }
+
+    .abada-visual{
+      position:relative;
+      min-height:420px;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.1);
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,203,5,.22), transparent 20%),
+        radial-gradient(circle at 80% 30%, rgba(21,167,255,.22), transparent 22%),
+        radial-gradient(circle at 70% 75%, rgba(255,79,184,.2), transparent 20%),
+        linear-gradient(180deg, #0f1015, #171921);
+    }
+
+    .abada-shirt{
+      position:absolute;
+      left:50%; top:52%;
+      transform:translate(-50%, -50%);
+      width:min(72%, 330px);
+      aspect-ratio:1 / 1.12;
+      background:
+        linear-gradient(160deg, #42c2ff 0%, #78d5ff 18%, #ff5bbf 18%, #ff5bbf 37%, #ffd126 37%, #ffd126 55%, #73d36c 55%, #73d36c 72%, #42c2ff 72%, #42c2ff 100%);
+      clip-path:polygon(18% 10%, 34% 10%, 40% 0, 60% 0, 66% 10%, 82% 10%, 100% 24%, 86% 40%, 86% 100%, 14% 100%, 14% 40%, 0 24%);
+      box-shadow:0 25px 60px rgba(0,0,0,.35);
+      border:3px solid rgba(255,255,255,.2);
+    }
+
+    .abada-shirt::before{
+      content:"YPIOCA\A FOLIA";
+      white-space:pre;
+      position:absolute;
+      left:50%; top:54%;
+      transform:translate(-50%, -50%) rotate(-6deg);
+      font-family:"Bungee", cursive;
+      font-size:clamp(1.4rem, 3vw, 2.2rem);
+      line-height:1;
+      color:#1a1a1a;
+      text-align:center;
+      text-shadow:0 2px 0 rgba(255,255,255,.2);
+    }
+
+    .abada-shirt::after{
+      content:"abadá conceito";
+      position:absolute;
+      left:50%; bottom:12%;
+      transform:translateX(-50%);
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.16);
+      backdrop-filter:blur(8px);
+      color:#111;
+      font-weight:800;
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      padding:.35rem .55rem;
+      border-radius:999px;
+    }
+
+    .register-wrap{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:1.2rem;
+      align-items:stretch;
+    }
+
+    .register-copy{
+      padding:1.5rem;
+    }
+
+    .register-copy p{
+      color:var(--muted);
+      line-height:1.8;
+      margin:.8rem 0 1.3rem;
+    }
+
+    .register-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:.8rem;
+    }
+
+    .register-list li{
+      display:flex;
+      align-items:flex-start;
+      gap:.75rem;
+      color:#f3ead7;
+    }
+
+    .register-list li::before{
+      content:"✓";
+      flex:0 0 auto;
+      width:24px;height:24px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--green),#66dd9a);
+      color:#051109;
+      font-weight:900;
+      margin-top:.1rem;
+    }
+
+    .register-form{
+      padding:1.5rem;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .register-form::before{
+      content:"";
+      position:absolute;
+      right:-40px; top:-40px;
+      width:160px;height:160px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,203,5,.18), transparent 68%);
+      pointer-events:none;
+    }
+
+    .form-grid{
+      display:grid;
+      gap:1rem;
+    }
+
+    .field{
+      display:grid;
+      gap:.45rem;
+    }
+
+    .field label{
+      font-weight:700;
+      color:#fff0be;
+      font-size:.94rem;
+    }
+
+    .field input{
+      width:100%;
+      border:none;
+      outline:none;
+      color:var(--text);
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.11);
+      border-radius:16px;
+      padding:1rem 1rem;
+      transition:border-color .25s ease, box-shadow .25s ease, transform .15s ease;
+    }
+
+    .field input:focus{
+      border-color:rgba(255,203,5,.7);
+      box-shadow:0 0 0 4px rgba(255,203,5,.12);
+    }
+
+    .field small{
+      color:#baa;
+      min-height:1em;
+    }
+
+    .form-note{
+      color:var(--muted);
+      font-size:.9rem;
+      line-height:1.6;
+      margin:0;
+    }
+
+    .success{
+      margin-top:1rem;
+      padding:1rem;
+      border-radius:16px;
+      background:rgba(8,180,90,.1);
+      border:1px solid rgba(8,180,90,.3);
+      color:#b7f5cf;
+      display:none;
+    }
+    .success.show{display:block}
+
+    .proof-links{
+      display:grid;
+      gap:.85rem;
+    }
+
+    .proof-link{
+      display:flex;
+      gap:.85rem;
+      align-items:flex-start;
+      padding:1rem 1rem;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      transition:transform .2s ease, border-color .2s ease, background .2s ease;
+      overflow-wrap:anywhere;
+    }
+    .proof-link:hover{
+      transform:translateX(4px);
+      border-color:rgba(255,203,5,.35);
+      background:rgba(255,255,255,.06);
+    }
+    .proof-link span{
+      flex:0 0 auto;
+      width:34px;height:34px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--yellow),var(--orange));
+      color:#111;
+      font-weight:900;
+    }
+    .proof-link strong{
+      display:block;
+      color:#fff0be;
+      margin-bottom:.2rem;
+    }
+    .proof-link em{
+      display:block;
+      color:#8fd5ff;
+      font-style:normal;
+      line-height:1.55;
+      font-size:.94rem;
+    }
+
+    footer{
+      padding:2rem 0 3rem;
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:1rem;
+    }
+
+    .footer-wrap{
+      display:flex;
+      gap:1rem;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      color:var(--muted);
+    }
+
+    .footer-wrap strong{
+      color:var(--yellow);
+      font-family:"Bungee", cursive;
+      font-size:1rem;
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid,
+      .history-layout,
+      .identity-wrap,
+      .register-wrap{
+        grid-template-columns:1fr;
+      }
+      .impact-strip{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+      .gallery-grid .span-5,
+      .gallery-grid .span-4,
+      .gallery-grid .span-3,
+      .gallery-grid .span-6{
+        grid-column:span 6;
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav{
+        align-items:flex-start;
+        padding:.9rem 0;
+      }
+      .menu{
+        gap:.8rem;
+      }
+      .menu a{
+        display:none;
+      }
+      .hero-meta,
+      .two-col,
+      .impact-strip{
+        grid-template-columns:1fr;
+      }
+      .gallery-grid{
+        grid-template-columns:1fr;
+      }
+      .gallery-grid .span-5,
+      .gallery-grid .span-4,
+      .gallery-grid .span-3,
+      .gallery-grid .span-6{
+        grid-column:auto;
+      }
+      .photo-slot,
+      .photo-slot.big,
+      .photo-slot.tall{
+        min-height:240px;
+      }
+      .poster-content{
+        inset:auto .8rem .8rem .8rem;
+      }
+      .hero{
+        padding-top:1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal,
+      .stagger > *,
+      .confetti span{
+        animation:none !important;
+        transition:none !important;
+        opacity:1 !important;
+        transform:none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+  <header>
+    <div class="container nav">
+      <a href="#inicio" class="brand" aria-label="Página inicial Ypioca Folia">
+        <div class="logo-mark" aria-hidden="true"></div>
+        <div class="brand-text">
+          <strong>Ypioca Folia</strong>
+          <span>Portfólio carnavalesco • Iguatu, Ceará</span>
+        </div>
+      </a>
+
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="#historia">História</a>
+        <a href="#atracoes">Atrações</a>
+        <a href="#acessibilidade">Inclusão</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#cadastro">Cadastro</a>
+        <a href="#links">Comprovação</a>
+        <a href="#cadastro" class="btn btn-primary">Comprar abadá</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy stagger">
+          <div class="eyebrow">Carnaval, cultura e pertencimento</div>
+          <h1>Portfólio oficial do Ypioca Folia</h1>
+          <p class="lead">
+            Uma celebração que nasceu para valorizar a cultura popular do interior do Ceará,
+            reunir comunidades, impulsionar artistas da terra e transformar o carnaval em
+            experiência coletiva, vibrante e inclusiva.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#cadastro" class="btn btn-primary">Quero adquirir meu abadá</a>
+            <a href="#galeria" class="btn btn-dark">Ver espaços para fotos</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-item">
+              <strong>3 anos</strong>
+              <span>de crescimento, estrutura e consolidação regional.</span>
+            </div>
+            <div class="meta-item">
+              <strong>+ Cultura</strong>
+              <span>bandas, blocos, capoeira, dança, oficinas e folclore.</span>
+            </div>
+            <div class="meta-item">
+              <strong>+ Inclusão</strong>
+              <span>acessibilidade, Libras, sinalização e apoio especializado.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="festival-poster" aria-label="Arte visual temática do Ypioca Folia">
+            <div class="confetti" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="poster-content">
+              <div class="poster-title">Ypioca Folia</div>
+              <div class="poster-sub">
+                Logotipo vibrante, energia carnavalesca e uma identidade inspirada nas cores
+                presentes nos abadás e nas fotos do evento: amarelo, azul, rosa, verde e vermelho.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="historia">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>História do Evento</h2>
+          <p>
+            O Ypioca Folia nasceu há três anos como uma celebração carnavalesca que une tradição
+            e inovação. Criado para valorizar a cultura popular do interior do Ceará, o evento cresceu
+            em público e estrutura, tornando-se referência regional e espaço de convivência comunitária.
+          </p>
+        </div>
+
+        <div class="history-layout">
+          <article class="panel history-text reveal">
+            <p>
+              Mais do que uma festa, o Ypioca Folia se consolidou como uma plataforma de expressão cultural.
+              Ao longo de sua trajetória, o evento fortaleceu a identidade carnavalesca local, aproximou artistas,
+              comerciantes, moradores e visitantes, e reafirmou o valor do carnaval como patrimônio vivo da comunidade.
+              Seu crescimento também reflete um compromisso com organização, impacto social, acessibilidade e pertencimento,
+              simbolizado pela força dos blocos, do trio elétrico e dos abadás exclusivos que unem os foliões.
+            </p>
+          </article>
+
+          <aside class="panel ribbon-box reveal" aria-label="Destaques do evento">
+            <div class="ribbon">
+              <strong>Tradição + inovação</strong>
+              <span>Uma festa com raízes populares e linguagem visual contemporânea.</span>
+            </div>
+            <div class="ribbon">
+              <strong>Referência regional</strong>
+              <span>Crescimento de público, estrutura e relevância cultural no interior cearense.</span>
+            </div>
+            <div class="ribbon">
+              <strong>Convivência comunitária</strong>
+              <span>Integração entre moradores, artistas, visitantes e coletivos culturais.</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="atracoes">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Atrações e Movimentos Culturais</h2>
+          <p>
+            O evento reúne música, performance, tradição e participação popular em uma programação
+            diversa, pensada para celebrar o espírito do carnaval e valorizar a produção artística local.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <article class="feature-block reveal">
+            <h3>Atrações Principais</h3>
+            <ul class="bullet-list">
+              <li><span><strong>Bandas regionais</strong> e artistas da terra que garantem diversidade musical.</span></li>
+              <li><span><strong>Trio elétrico</strong> como símbolo da festa, arrastando multidões.</span></li>
+              <li><span><strong>Blocos carnavalescos</strong> que representam comunidades locais e fortalecem a identidade cultural.</span></li>
+              <li><span><strong>Abadás exclusivos</strong> como símbolo de pertencimento e identidade visual dos foliões.</span></li>
+            </ul>
+          </article>
+
+          <article class="feature-block reveal">
+            <h3>Expressões Artísticas</h3>
+            <ul class="bullet-list">
+              <li><span><strong>Grupos de dança</strong> e capoeira integrando o corpo e a tradição.</span></li>
+              <li><span><strong>Artesanato local</strong> exposto em feiras culturais durante o evento.</span></li>
+              <li><span><strong>Apresentações folclóricas</strong> resgatando tradições regionais.</span></li>
+              <li><span><strong>Oficinas culturais</strong> para jovens e crianças, incentivando formação artística.</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="acessibilidade">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Acessibilidade e Integração Social</h2>
+          <p>
+            O Ypioca Folia é planejado para acolher diferentes públicos, garantindo acesso,
+            participação e inclusão em todas as dimensões da experiência.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <article class="feature-block reveal">
+            <h3>Adequações de Acessibilidade</h3>
+            <ul class="bullet-list">
+              <li><span>Rampas e áreas adaptadas para pessoas com mobilidade reduzida.</span></li>
+              <li><span>Espaços reservados para cadeirantes próximos ao palco.</span></li>
+              <li><span>Equipes de apoio treinadas para atendimento inclusivo.</span></li>
+              <li><span>Intérpretes de Libras durante os shows principais.</span></li>
+              <li><span>Comunicação visual acessível, com sinalização clara e contrastes adequados.</span></li>
+            </ul>
+          </article>
+
+          <article class="feature-block reveal">
+            <h3>Integração Social</h3>
+            <ul class="bullet-list">
+              <li><span>Campanhas sociais de arrecadação de alimentos e brinquedos.</span></li>
+              <li><span>Parcerias com escolas e ONGs para inclusão de jovens em atividades culturais.</span></li>
+              <li><span>Programas de voluntariado com participação de moradores locais.</span></li>
+              <li><span>Incentivo à presença de artistas independentes e coletivos culturais.</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="impacto">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Impacto do Ypioca Folia</h2>
+          <p>
+            O evento gera efeitos positivos em diferentes frentes, reforçando seu papel como
+            manifestação cultural, motor econômico, atrativo turístico e ponto de conexão social.
+          </p>
+        </div>
+
+        <div class="impact-strip">
+          <article class="impact reveal" style="--accent: var(--yellow);">
+            <strong>Cultural</strong>
+            <p>Fortalecimento da identidade carnavalesca e valorização da diversidade artística e popular.</p>
+          </article>
+          <article class="impact reveal" style="--accent: var(--green);">
+            <strong>Econômico</strong>
+            <p>Geração de renda para comerciantes, artesãos e prestadores de serviço durante o período festivo.</p>
+          </article>
+          <article class="impact reveal" style="--accent: var(--blue);">
+            <strong>Turístico</strong>
+            <p>Atração de visitantes e promoção da cidade como destino festivo e cultural.</p>
+          </article>
+          <article class="impact reveal" style="--accent: var(--pink);">
+            <strong>Social</strong>
+            <p>Inclusão e integração de diferentes públicos, reforçando o caráter comunitário do evento.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Linha do Tempo</h2>
+          <p>
+            Espaço para apresentar a evolução do evento ao longo dos anos. Você pode editar,
+            ampliar ou substituir os textos conforme for adicionando novos marcos e registros.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <article class="time-item reveal">
+            <div class="date">Ano 1</div>
+            <h3>Nascimento do Ypioca Folia</h3>
+            <p>Início da celebração carnavalesca com proposta de unir tradição local, música e convivência comunitária.</p>
+          </article>
+          <article class="time-item reveal">
+            <div class="date">Ano 2</div>
+            <h3>Crescimento de público e estrutura</h3>
+            <p>Ampliação da programação, fortalecimento dos blocos e consolidação do evento como referência regional.</p>
+          </article>
+          <article class="time-item reveal">
+            <div class="date">Fevereiro de 2024</div>
+            <h3>Registro marcante do abadá</h3>
+            <p>Referência ao registro do folião Ray e ao detalhe da data invertida no abadá, compondo a memória visual do evento.</p>
+          </article>
+          <article class="time-item reveal">
+            <div class="date">Próximas edições</div>
+            <h3>Espaço aberto para novos capítulos</h3>
+            <p>Adicione aqui novas conquistas, atrações confirmadas, mudanças visuais e fatos importantes do Ypioca Folia.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="identidade">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Identidade Visual</h2>
+          <p>
+            A linguagem visual do Ypioca Folia nasce do clima festivo das fotos e dos abadás:
+            cores intensas, energia popular e uma tipografia alegre, forte e memorável.
+          </p>
+        </div>
+
+        <div class="identity-wrap">
+          <article class="panel identity-board reveal">
+            <ul class="bullet-list">
+              <li><span><strong>Logotipo vibrante e colorido</strong> para reforçar presença, alegria e reconhecimento da marca.</span></li>
+              <li><span><strong>Paleta carnavalesca</strong> baseada em vermelho, amarelo, verde, azul e tons vibrantes observados nas imagens.</span></li>
+              <li><span><strong>Tipografia festiva</strong> com personalidade forte para títulos e excelente leitura no corpo do conteúdo.</span></li>
+              <li><span><strong>Abadás</strong> como elemento de identidade coletiva e símbolo de pertencimento dos foliões.</span></li>
+            </ul>
+
+            <div class="color-chips" aria-label="Paleta de cores">
+              <div class="chip"><i style="background:var(--yellow)"></i> Amarelo folia</div>
+              <div class="chip"><i style="background:var(--blue)"></i> Azul abadá</div>
+              <div class="chip"><i style="background:var(--pink)"></i> Rosa festa</div>
+              <div class="chip"><i style="background:var(--green)"></i> Verde cultura</div>
+              <div class="chip"><i style="background:var(--red)"></i> Vermelho energia</div>
+            </div>
+          </article>
+
+          <aside class="abada-visual reveal" aria-label="Ilustração conceitual de abadá"></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="galeria">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Galeria de Fotos</h2>
+          <p>
+            Abaixo estão espaços prontos para você incrementar com suas fotos reais do evento.
+            Você pode substituir cada bloco por imagens, banners, registros de foliões, palco,
+            abadás, feiras culturais e bastidores.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="photo-slot span-5 big reveal">
+            <div class="slot-badge">Espaço para foto</div>
+            <div class="slot-content">
+              <strong>Banner principal / entrada do evento</strong>
+              <span>Ideal para foto vertical ou horizontal da identidade visual do Ypioca Folia.</span>
+            </div>
+          </article>
+
+          <article class="photo-slot span-3 tall reveal">
+            <div class="slot-badge">Adicionar imagem</div>
+            <div class="slot-content">
+              <strong>Foliões com abadá</strong>
+              <span>Use aqui registros espontâneos e fotos de público.</span>
+            </div>
+          </article>
+
+          <article class="photo-slot span-4 tall reveal">
+            <div class="slot-badge">Adicionar imagem</div>
+            <div class="slot-content">
+              <strong>Trio elétrico / palco</strong>
+              <span>Espaço para momentos de show e multidão.</span>
+            </div>
+          </article>
+
+          <article class="photo-slot span-4 reveal">
+            <div class="slot-badge">Adicionar imagem</div>
+            <div class="slot-content">
+              <strong>Artesanato e feira cultural</strong>
+              <span>Valorize os expositores e a economia local.</span>
+            </div>
+          </article>
+
+          <article class="photo-slot span-4 reveal">
+            <div class="slot-badge">Adicionar imagem</div>
+            <div class="slot-content">
+              <strong>Grupos de dança e capoeira</strong>
+              <span>Espaço ideal para movimentos culturais em ação.</span>
+            </div>
+          </article>
+
+          <article class="photo-slot span-4 reveal">
+            <div class="slot-badge">Adicionar imagem</div>
+            <div class="slot-content">
+              <strong>Área kids / oficinas culturais</strong>
+              <span>Mostre participação de jovens e crianças.</span>
+            </div>
+          </article>
+
+          <article class="photo-slot span-6 tall reveal">
+            <div class="slot-badge">Adicionar imagem</div>
+            <div class="slot-content">
+              <strong>Registro especial / foto destaque</strong>
+              <span>Perfeito para uma imagem marcante do portfólio.</span>
+            </div>
+          </article>
+
+          <article class="photo-slot span-6 tall reveal">
+            <div class="slot-badge">Adicionar imagem</div>
+            <div class="slot-content">
+              <strong>Bastidores, equipe ou bloco carnavalesco</strong>
+              <span>Inclua making of, organização ou retratos coletivos.</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cadastro">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Cadastro para Adquirir Abadás</h2>
+          <p>
+            Área preparada para captar clientes interessados em adquirir abadás. O formulário abaixo
+            possui campos de nome, e-mail e senha, pronto para você integrar futuramente a um sistema real.
+          </p>
+        </div>
+
+        <div class="register-wrap">
+          <article class="panel register-copy reveal">
+            <h3 style="font-size:clamp(1.4rem,2.2vw,2.1rem); color:var(--yellow);">Garanta seu lugar na folia</h3>
+            <p>
+              Cadastre seus dados para demonstrar interesse na compra de abadás do Ypioca Folia.
+              Esta estrutura pode ser conectada depois a pagamento, lote, seleção de tamanho,
+              quantidade de peças e confirmação automática por e-mail.
+            </p>
+
+            <ul class="register-list">
+              <li>Espaço para <strong>cadastro de clientes</strong> com visual profissional e responsivo.</li>
+              <li>Campos essenciais: <strong>nome, e-mail e senha</strong>.</li>
+              <li>Pronto para futura integração com <strong>WhatsApp, banco de dados ou checkout</strong>.</li>
+              <li>Ideal para captação de interessados em <strong>abadás exclusivos</strong>.</li>
+            </ul>
+          </article>
+
+          <aside class="panel register-form reveal">
+            <form id="signupForm" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="nome">Nome completo</label>
+                  <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" />
+                  <small id="nomeErro" aria-live="polite"></small>
+                </div>
+
+                <div class="field">
+                  <label for="email">E-mail</label>
+                  <input type="email" id="email" name="email" placeholder="seunome@email.com" />
+                  <small id="emailErro" aria-live="polite"></small>
+                </div>
+
+                <div class="field">
+                  <label for="senha">Senha</label>
+                  <input type="password" id="senha" name="senha" placeholder="Crie uma senha com pelo menos 6 caracteres" />
+                  <small id="senhaErro" aria-live="polite"></small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Cadastrar interesse</button>
+                <p class="form-note">
+                  Observação: este formulário funciona como demonstração front-end. Você poderá conectar
+                  depois a um sistema real de cadastro e venda.
+                </p>
+              </div>
+            </form>
+
+            <div class="success" id="successBox" role="status" aria-live="polite">
+              Cadastro enviado com sucesso! Seu espaço de captação está pronto para futuras integrações.
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="links">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Links de Comprovação</h2>
+          <p>
+            Área para organizar referências, registros e comprovações do portfólio. Mantive os links
+            informados em formato mais limpo para facilitar a navegação.
+          </p>
+        </div>
+
+        <div class="proof-links">
+          <a class="proof-link reveal" href="https://www.google.com/search?q=Ypioca+Folia+Iguatu+Cear%C3%A1" target="_blank" rel="noopener noreferrer">
+            <span>↗</span>
+            <div>
+              <strong>Linha do tempo / busca pública</strong>
+              <em>https://www.google.com/search?q=Ypioca+Folia+Iguatu+Cear%C3%A1</em>
+            </div>
+          </a>
+
+          <a class="proof-link reveal" href="https://www.instagram.com/p/C3Qvhe_vSLC/" target="_blank" rel="noopener noreferrer">
+            <span>↗</span>
+            <div>
+              <strong>Instagram — registro 1</strong>
+              <em>https://www.instagram.com/p/C3Qvhe_vSLC/</em>
+            </div>
+          </a>
+
+          <a class="proof-link reveal" href="https://www.instagram.com/p/DU3pwBrD3ZJ/" target="_blank" rel="noopener noreferrer">
+            <span>↗</span>
+            <div>
+              <strong>Instagram — registro 2</strong>
+              <em>https://www.instagram.com/p/DU3pwBrD3ZJ/</em>
+            </div>
+          </a>
+
+          <a class="proof-link reveal" href="https://www.instagram.com/ypiocafolia/" target="_blank" rel="noopener noreferrer">
+            <span>↗</span>
+            <div>
+              <strong>Instagram oficial</strong>
+              <em>https://www.instagram.com/ypiocafolia/</em>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>
+        <strong>Ypioca Folia</strong><br>
+        <span>Portfólio web desenvolvido para apresentar história, impacto, galeria e captação para abadás.</span>
+      </div>
+      <div>
+        <span>Feito em HTML, CSS e JavaScript • pronto para você incrementar com fotos reais.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const form = document.getElementById('signupForm');
+    const nome = document.getElementById('nome');
+    const email = document.getElementById('email');
+    const senha = document.getElementById('senha');
+
+    const nomeErro = document.getElementById('nomeErro');
+    const emailErro = document.getElementById('emailErro');
+    const senhaErro = document.getElementById('senhaErro');
+    const successBox = document.getElementById('successBox');
+
+    function validarEmail(valor){
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+    }
+
+    function limparErros(){
+      nomeErro.textContent = '';
+      emailErro.textContent = '';
+      senhaErro.textContent = '';
+      successBox.classList.remove('show');
+      [nome,email,senha].forEach(input => {
+        input.style.borderColor = 'rgba(255,255,255,.11)';
+        input.style.boxShadow = 'none';
+      });
+    }
+
+    function marcarErro(input, elErro, mensagem){
+      elErro.textContent = mensagem;
+      elErro.style.color = '#ff9b9b';
+      input.style.borderColor = 'rgba(239,51,64,.7)';
+      input.style.boxShadow = '0 0 0 4px rgba(239,51,64,.12)';
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      limparErros();
+
+      let valido = true;
+
+      if(nome.value.trim().length < 3){
+        marcarErro(nome, nomeErro, 'Informe um nome válido com pelo menos 3 caracteres.');
+        valido = false;
+      }
+
+      if(!validarEmail(email.value.trim())){
+        marcarErro(email, emailErro, 'Digite um e-mail válido.');
+        valido = false;
+      }
+
+      if(senha.value.trim().length < 6){
+        marcarErro(senha, senhaErro, 'A senha deve ter no mínimo 6 caracteres.');
+        valido = false;
+      }
+
+      if(valido){
+        successBox.classList.add('show');
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
